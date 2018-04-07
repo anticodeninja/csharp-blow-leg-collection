@@ -1,4 +1,4 @@
-namespace DispatcherKiller
+namespace IncorrectWaysToDie
 {
     using System.Windows;
 

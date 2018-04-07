@@ -1,11 +1,11 @@
-using System;
-using System.Threading;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Threading;
-
 namespace DispatcherKiller
 {
+    using System;
+    using System.Threading;
+    using System.Windows;
+    using System.Windows.Input;
+    using System.Windows.Threading;
+
     public class MainViewModel
     {
         public ICommand SyntheticKillCommand { get; }

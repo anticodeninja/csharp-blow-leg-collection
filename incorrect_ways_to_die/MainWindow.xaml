@@ -1,0 +1,27 @@
+<Window x:Class="IncorrectWaysToDie.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Command="{Binding NinjaWayToCrashCommand}" Content="Ninja way to crash"/>
+        <Button Grid.Row="1" Command="{Binding HideMemoryWay1ToCrashCommand}" Content="Hide memory way 1 to crash"/>
+        <Button Grid.Row="2" Command="{Binding HideMemoryWay2ToCrashCommand}" Content="Hide memory way 2 to crash"/>
+        <Button Grid.Row="3" Command="{Binding MoreCrashesWayToCrashCommand}" Content="More crashes way to crash"/>
+        <Button Grid.Row="4" Command="{Binding HideFromWerWayToCrashCommand}" Content="Hide from WER way to crash"/>
+        <Button Grid.Row="5" Command="{Binding CorrectWayToCrashCommand}" Content="Correct way to crash"/>
+    </Grid>
+</Window>
