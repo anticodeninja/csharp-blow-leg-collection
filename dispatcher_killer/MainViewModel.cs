@@ -1,3 +1,8 @@
+// This Source Code Form is subject to the terms of the
+// Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed
+// with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+// Copyright 2018-2020 Artem Yamshanov, me [at] anticode.ninja
+
 namespace DispatcherKiller
 {
     using System;
@@ -10,11 +15,15 @@ namespace DispatcherKiller
     {
         public ICommand SyntheticKillCommand { get; }
         public ICommand LikeInRealLifeKillCommand { get; }
+        public ICommand SyntheticKill2Command { get; }
+        public ICommand LikeInRealLifeKill2Command { get; }
 
         public MainViewModel()
         {
             SyntheticKillCommand = new SyntheticKill();
             LikeInRealLifeKillCommand = new LikeInRealLifeKill();
+            SyntheticKill2Command = new SyntheticKill2();
+            LikeInRealLifeKill2Command = new LikeInRealLifeKill2();
         }
 
         // Fun Fact: it is a bad idea to write wrappers around sync/async invokers with the same priority
@@ -75,6 +84,32 @@ namespace DispatcherKiller
                 }
 
                 ThreadPool.QueueUserWorkItem(LikeVeryOverLoadQueue, null);
+            }
+        }
+
+        private class SyntheticKill2 : ICommand
+        {
+            public bool CanExecute(object parameter) => true;
+
+            public event EventHandler CanExecuteChanged;
+
+            public void Execute(object parameter)
+            {
+                using (Application.Current.Dispatcher.DisableProcessing())
+                    InvokeSync(() => MessageBox.Show("It will be never invoked!"));
+            }
+        }
+
+        private class LikeInRealLifeKill2 : ICommand
+        {
+            public bool CanExecute(object parameter) => true;
+
+            public event EventHandler CanExecuteChanged;
+
+            public void Execute(object parameter)
+            {
+                ThirdPartyElement.Callback = () => InvokeSync(() => MessageBox.Show("It will be never invoked!"));
+                Application.Current.MainWindow.Width += 1;
             }
         }
     }
